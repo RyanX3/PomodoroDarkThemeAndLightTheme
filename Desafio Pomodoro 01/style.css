@@ -1,0 +1,381 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --bg-color: linear-gradient(to bottom, #FFFFFF, rgb(84, 85, 88));
+  --bg-cards: #E1E1E6;
+  --tm-color: #323238;
+  --icon-color: white;
+  --bt-color: #323238;
+  --svg-color: #323238;
+  --input-color: #323238;
+  --trees-color: linear-gradient(to bottom, rgb(49, 109, 0), #66ff00);
+  --rain-color: linear-gradient(to bottom, rgb(0, 13, 255), #03ffea);
+  --coffee-color: linear-gradient(to bottom, #e0bb99, #997743, #472d1b);
+  --fire-color: linear-gradient(to bottom, rgb(255, 39, 39), #ff8400);
+}
+
+.dark-theme,
+:root:has(:checked) {
+  --bg-color: linear-gradient(to bottom, rgb(37, 39, 49), #000000);
+  --bg-cards: #29292E;
+  --tm-color: white;
+  --bt-color: #C4C4CC;
+  --svg-color: #C4C4CC;
+  --input-color: #FFFFFF;
+
+  --trees-color: linear-gradient(to bottom, #001c00, #003300, #004c00, #006600, #007f00);
+  --rain-color: linear-gradient(to bottom, #000011, #000022, #000033, #000044, #000055);
+  --coffee-color: linear-gradient(to bottom, #0c0907, #402e20, #7e543b);;
+  --fire-color: linear-gradient(to bottom, #4c0000, #4c2709, #4c512a)
+}
+
+
+body {
+  background: var(--bg-color);
+  font-family: 'Roboto', sans-serif;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  overflow: hidden;
+
+  width: 82.1rem;
+  height: 100%;
+}
+
+.timer span {
+  font-size: 12.6rem;
+}
+
+
+.hide {
+  display: none;
+}
+
+.button-stopped svg path,
+.button-more svg path,
+.button-less svg path,
+.button-pause svg path,
+.button-play svg path {
+  fill: var(--bt-color);
+}
+
+.timer span {
+  font-size: 12.6rem;
+  color: var(--tm-color);
+}
+
+.left-column {
+  display: flex;
+  margin-right: 19.2rem;
+  gap: 1.7rem;
+}
+
+.left-column .controls button {
+  gap: 4rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.right-column {
+  grid-template-rows: 1fr 1fr;
+}
+
+.right-column .sound-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.sound-card svg {
+  pointer-events: none;
+}
+
+.sound-card .trees,
+.rain,
+.coffee,
+.fire {
+
+  background: var(--bg-cards);
+  border-radius: 2.4rem;
+
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
+  width: 14rem;
+  height: 15rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.sound-card .treesColor {
+  background: var(--trees-color);
+}
+
+.sound-card .rainColor {
+  background: var(--rain-color);
+}
+
+.sound-card .coffeeColor {
+  background: var(--coffee-color);
+}
+
+.sound-card .fireColor {
+  background: var(--fire-color);
+}
+
+.clicked svg path {
+  animation: animationColor 300ms linear;
+}
+
+.sound-card svg path {
+  fill: var(--svg-color)
+}
+
+.colorIcon svg path {
+  fill: white;
+}
+
+.bright-mode {
+  position: absolute;
+  top: 6.4rem;
+  right: 6.4rem;
+  cursor: pointer;
+}
+
+.dark-mode {
+  position: absolute;
+  top: 6.4rem;
+  right: 6.4rem;
+  cursor: pointer;
+}
+
+.dark-theme {
+  position: absolute;
+  top: 8rem;
+  right: 8rem;
+  display: none;
+}
+
+.right-column .trees,
+.rain,
+.coffee,
+.fire {
+
+  border-radius: 2.4rem;
+
+  width: 12rem;
+  height: 13rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+}
+
+.left-column .controls {
+  margin: 0;
+  display: flex;
+  gap: 4rem;
+}
+
+.trees,
+.rain,
+.coffee,
+.fire {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem;
+  gap: 3.2rem;
+  place-content: center;
+}
+
+.vol-control {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.2rem;
+  color: var(--tm-color)
+}
+
+.input-range-one,
+.input-range-two,
+.input-range-tree,
+.input-range-four {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--input-color);
+  width: 7rem;
+  height: 0.4rem;
+  border-radius: 0.5rem;
+
+}
+
+.input-range-one::-webkit-slider-thumb,
+.input-range-two::-webkit-slider-thumb,
+.input-range-tree::-webkit-slider-thumb,
+.input-range-four::-webkit-slider-thumb {
+
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: var(--input-color);
+  cursor: pointer;
+}
+
+.input-range-one::-moz-range-thumb,
+.input-range-two::-moz-slider-thumb,
+.input-range-tree::-moz-slider-thumb,
+.input-range-four::-moz-slider-thumb {
+
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 99rem;
+  background: var(--input-color);
+  cursor: pointer;
+}
+
+.input-range-one::-ms-thumb,
+.input-range-two::-ms-thumb,
+.input-range-tree::-ms-thumb,
+.input-range-four::-ms-thumb {
+
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 99rem;
+  background: var(--input-color);
+  cursor: pointer;
+}
+
+
+
+@keyframes animationColor {
+  0% {
+    fill: red;
+  }
+}
+
+@media (max-width: 1036px) {
+
+  main {
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    place-content: center;
+  }
+
+  .controls svg {
+    width: 4.2rem;
+  }
+
+  .timer span {
+    font-size: 11.4rem;
+  }
+
+  .left-column {
+    margin: 0 auto;
+
+  }
+
+  .sound-card .trees,
+  .rain,
+  .coffee,
+  .fire {
+    width: 13rem;
+    height: 14rem;
+
+  }
+
+}
+
+
+
+@media (max-width: 524px) {
+  body {
+    align-items: start;
+    justify-content: center;
+  }
+
+  main {
+    height: 100%;
+    place-content: center;
+    justify-content: center;
+
+  }
+
+  .timer span {
+    font-size: 8.8rem;
+  }
+
+
+  .bright-mode,
+  .dark-mode {
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .bright-mode svg,
+  .dark-mode svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .left-column .controls {
+    gap: 2.4rem;
+  }
+
+  .controls svg {
+    width: 3.8rem;
+  }
+
+  .sound-card .trees,
+  .rain,
+  .coffee,
+  .fire {
+    width: 11rem;
+    height: 12rem;
+  }
+
+  .right-column .sound-card {
+    gap: 2rem;
+  }
+
+  .left-column {
+    gap: 0;
+  }
+}
